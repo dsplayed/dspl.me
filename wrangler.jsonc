@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "front",
+  "account_id": "6513e5596c0280ff092278daad209521",
+  "compatibility_date": "2026-08-14",
+  "main": "./worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page"
+  }
+}

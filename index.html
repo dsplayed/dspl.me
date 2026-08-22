@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dsplay's website</title>
+    <meta name="description" content="hey i'm dsplay. this is my lil corner of the internet where i write about tech, security, and whatever else i'm into.">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="canonical" href="https://dsplay.cc/">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dsplay.cc">
+    <meta property="og:title" content="👋 wsp, i'm dsplay">
+    <meta property="og:description" content="get to know me better :D">
+    <meta property="og:image" content="https://dsplay.cc/og/main-meta.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="👋 wsp, i'm dsplay">
+    <meta name="twitter:description" content="get to know me better :D">
+    <meta name="twitter:image" content="https://dsplay.cc/og/main-meta.png">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0">
+    <link rel="stylesheet" href="styles.css">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "dsplay",
+        "url": "https://dsplay.cc",
+        "sameAs": []
+    }
+    </script>
+</head>
+<body>
+    <main class="wrap">
+        <nav class="nav">
+            <a href="/" class="logo">dsplay</a>
+            <div class="navr">
+                <ul class="links">
+                    <li><a href="#hm" data-i18n="nav_home">home</a></li>
+                    <li><a href="passion.html" data-i18n="nav_passions">passions</a></li>
+                    <li class="dropc">
+                        <button class="dropb" id="dbtn">☰</button>
+                        <div class="dropm" id="dmenu">
+                            <a href="blogs.html" data-i18n="nav_blogs">blogs</a>
+                            <a href="friends.html" data-i18n="nav_friends">friends</a>
+                            <a href="passion.html" data-i18n="nav_passions">passion</a>
+                            <a href="tastes.html" data-i18n="nav_tastes">tastes</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="acts">
+                    <button class="tbtn" id="tbtn" aria-label="Toggle theme">
+                        <span class="tico material-symbols-outlined">dark_mode</span>
+                    </button>
+                    <button class="lbtn" id="lbtn" aria-label="Switch to Thai">🇹🇭</button>
+                    <button class="mbtn" id="mbtn" aria-label="Open listening modal">
+                        <span class="mic material-symbols-outlined">headphones</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section id="hm" class="hd">
+            <h1 data-i18n="heading">👋 wsp, i'm dsplay</h1>
+        </section>
+
+        <section id="abt" class="abt">
+            <p data-i18n-html="about_1">i spend a lot of time just coding random stuff, mostly using <strong>html, css, javascript, and react.</strong> i usually build things for myself to make life a bit easier or just because i feel like it.</p>
+            
+            <p data-i18n-html="about_2">if you ever want to work together, talk about a project, or just say hi, feel free to <a href="#cnt">reach out</a>.</p>
+        </section>
+
+        <section id="prj" class="prj">
+            <h2 data-i18n="projects">projects</h2>
+            
+            <div class="prj-it">
+                <h3><a href="/projects/AniMage" data-i18n="prj_1_title">AniMage</a> <a class="gh" href="https://github.com/dsplayed/animage" target="_blank" rel="noopener noreferrer">github ↗</a></h3>
+                <p data-i18n="prj_1_desc">an anime platform where you can stream, read manga, and hop into watch parties with friends.
+                    built on open apis, my biggest build yet.
+                </p>
+            </div>
+
+            <div class="prj-it">
+                <h3><a href="/projects/charlyn" data-i18n="prj_2_title">Charlyn</a> <a class="gh" href="https://github.com/dsplayed/charlyn" target="_blank" rel="noopener noreferrer">github ↗</a></h3>
+                <p data-i18n="prj_2_desc">an agentic ai discord bot with long-term memory and sandboxed code execution.
+                    it learns, remembers, and runs stuff on its own. basically my digital homie.
+                </p>
+            </div>
+
+            <div class="prj-it">
+                <h3><a href="/projects/mage" data-i18n="prj_3_title">Mage</a> <a class="gh" href="https://github.com/dsplayed/mage" target="_blank" rel="noopener noreferrer">github ↗</a></h3>
+                <p data-i18n="prj_3_desc">a link-in-bio site where you build a profile that actually stands out.
+                    share your links, socials, and identity in one place. make your presence magical.
+                </p>
+            </div>
+
+            <div class="prj-it">
+                <h3><a href="/projects/signbox" data-i18n="prj_4_title">Signbox</a> <a class="gh" href="https://github.com/dsplayed/signbox" target="_blank" rel="noopener noreferrer">github ↗</a></h3>
+                <p data-i18n="prj_4_desc">an ipa signing service. upload an app, pick a cert, and get a signed install link.
+                    no ads, no account, no nonsense.
+                </p>
+            </div>
+        </section>
+
+        <section id="cnt" class="cnt">
+            <h2 data-i18n="contact">contact</h2>
+            
+            <p data-i18n="contact_text">you can reach me through:</p>
+            
+            <div class="cnt-lnks">
+                <a href="mailto:dspl@yoru.lat" data-i18n="email">email</a>
+                <a href="https://github.com/dsplayed" target="_blank">github</a>
+                <a href="https://discord.com/users/896423091998162994" target="_blank">discord</a>
+            </div>
+        </section>
+
+        <footer class="ft">
+            <p>&copy; 2026 dsplay</p>
+        </footer>
+    </main>
+
+    <div class="mback" id="mmod" aria-hidden="true">
+        <div class="mmod" role="dialog" aria-modal="true" aria-labelledby="mtit">
+            <div class="mhead">
+                <p class="mtit" id="mtit" data-i18n="mp_title">Now Playing</p>
+                <button class="mclose" id="mclose" aria-label="Close listening modal" data-i18n="mp_close">close</button>
+            </div>
+            <div class="mbody" id="now" aria-live="polite">
+                <img class="mcover is-empty" id="cov" alt="Album cover" loading="lazy">
+                <div class="cfb" id="cfb" aria-hidden="true">
+                    <span class="material-symbols-outlined">music_note</span>
+                </div>
+                <div class="mmeta">
+                    <p class="ttl" id="ttl">Playing nothing</p>
+                    <p class="art" id="art">No track currently playing</p>
+                    <a class="src" id="src" href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">
+                        <span class="material-symbols-outlined" aria-hidden="true">headphones</span>
+                        <span data-i18n="mp_listen">Listen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

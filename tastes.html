@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tastes - dsplay</title>
+    <meta name="description" content="music i listen to, shows i watch, and other stuff i like. pretty straightforward.">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="canonical" href="https://dsplay.cc/tastes.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dsplay.cc/tastes.html">
+    <meta property="og:title" content="tastes - dsplay">
+    <meta property="og:description" content="stuff i like">
+    <meta property="og:image" content="https://dsplay.cc/og/tastes-meta.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="tastes - dsplay">
+    <meta name="twitter:description" content="stuff i like">
+    <meta name="twitter:image" content="https://dsplay.cc/og/tastes-meta.png">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .t-hd {
+            margin: 2.5rem 0 2.5rem 0;
+        }
+
+        .t-hd h1 {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .t-hd h1 {
+            color: #000000;
+        }
+
+        .t-tabs {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0;
+        }
+
+        body:not(.dark-mode) .t-tabs {
+            border-bottom-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .t-tab {
+            background: none;
+            border: none;
+            color: #555555;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        body:not(.dark-mode) .t-tab {
+            color: #aaaaaa;
+        }
+
+        .t-tab:hover {
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .t-tab:hover {
+            color: #000000;
+        }
+
+        .t-tab.active {
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .t-tab.active {
+            color: #000000;
+        }
+
+        .t-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 1px;
+        }
+
+        body:not(.dark-mode) .t-tab.active::after {
+            background: #000000;
+        }
+
+        .t-tab .icon {
+            font-size: 1rem;
+        }
+
+        .t-panel {
+            display: none;
+        }
+
+        .t-panel.active {
+            display: block;
+            animation: fadeInText 0.2s ease-out;
+        }
+
+        .t-empty {
+            color: #555555;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        body:not(.dark-mode) .t-empty {
+            color: #aaaaaa;
+        }
+
+        .t-panel p {
+            font-size: 0.9rem;
+            color: #999999;
+            line-height: 1.7;
+        }
+
+        body:not(.dark-mode) .t-panel p {
+            color: #555555;
+        }
+
+        .t-sub {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .song-row + .t-sub {
+            margin-top: 2rem;
+        }
+
+        .anime-row {
+            display: flex;
+            gap: 0.6rem;
+            overflow-x: auto;
+            padding: 0.25rem 0 0.75rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .anime-row::-webkit-scrollbar { height: 3px; }
+        .anime-row::-webkit-scrollbar-track { background: transparent; }
+        .anime-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+        body:not(.dark-mode) .anime-row::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
+
+        .anime-card {
+            flex: 0 0 100px;
+            text-decoration: none;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .anime-card.fav {
+            border-color: #ffd700;
+            box-shadow: 0 0 8px rgba(255,215,0,0.3);
+        }
+
+        .anime-art {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .anime-info {
+            padding: 0.15rem 0.3rem 0.25rem;
+        }
+
+        .anime-name {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body:not(.dark-mode) .anime-name {
+            color: #000000;
+        }
+
+        .anime-name .fav-badge {
+            color: #ffd700;
+            margin-right: 0.15rem;
+        }
+
+        .anime-tag {
+            display: block;
+            font-size: 0.55rem;
+            color: #777777;
+            margin-top: 0.05rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body:not(.dark-mode) .anime-tag {
+            color: #999999;
+        }
+
+        .anime-footnote {
+            font-size: 0.75rem;
+            color: #555555;
+            font-style: italic;
+            text-align: center;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        body:not(.dark-mode) .anime-footnote {
+            color: #999999;
+        }
+
+        body:not(.dark-mode) .t-sub {
+            color: #000000;
+        }
+
+        .song-row {
+            display: flex;
+            gap: 0.6rem;
+            overflow-x: auto;
+            padding: 0.25rem 0 0.75rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .song-row::-webkit-scrollbar { height: 3px; }
+        .song-row::-webkit-scrollbar-track { background: transparent; }
+        .song-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+        body:not(.dark-mode) .song-row::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
+
+        .song-card {
+            flex: 0 0 130px;
+            text-decoration: none;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-art {
+            width: 100%;
+            aspect-ratio: 1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .song-info {
+            padding: 0.2rem 0.35rem 0.3rem;
+        }
+
+        .song-name {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body:not(.dark-mode) .song-name {
+            color: #000000;
+        }
+
+        .song-album {
+            display: block;
+            font-size: 0.6rem;
+            color: #777777;
+            margin-top: 0.05rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body:not(.dark-mode) .song-album {
+            color: #999999;
+        }
+
+        .amodal-back {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            padding: 1rem;
+        }
+        .amodal-back.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .amodal {
+            background: #1a1a1a;
+            border-radius: 8px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        body:not(.dark-mode) .amodal {
+            background: #ffffff;
+        }
+        .amodal-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            position: sticky;
+            top: 0;
+            background: #1a1a1a;
+            z-index: 1;
+        }
+        body:not(.dark-mode) .amodal-head {
+            border-bottom-color: rgba(0,0,0,0.08);
+            background: #ffffff;
+        }
+        .amodal-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        body:not(.dark-mode) .amodal-title {
+            color: #000000;
+        }
+        .amodal-body {
+            padding: 0;
+        }
+        .amodal-hero {
+            width: 100%;
+        }
+        .amodal-hero img {
+            width: 100%;
+            display: block;
+            max-height: 400px;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .amodal-content {
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .amodal {
+                max-width: 800px;
+                overflow: hidden;
+            }
+            .amodal-body {
+                display: flex;
+                max-height: 80vh;
+            }
+            .amodal-hero {
+                width: 250px;
+                flex-shrink: 0;
+            }
+            .amodal-hero img {
+                width: 100%;
+                height: 100%;
+                max-height: none;
+                object-fit: cover;
+            }
+            .amodal-content {
+                flex: 1;
+                overflow-y: auto;
+                padding: 1rem;
+            }
+        }
+        .amodal-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+        .amodal-meta span {
+            font-size: 0.78rem;
+            color: #999999;
+            background: rgba(255,255,255,0.06);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        body:not(.dark-mode) .amodal-meta span {
+            background: rgba(0,0,0,0.06);
+        }
+        .amodal-synopsis h3,
+        .amodal-section h3 {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 0.3rem;
+        }
+        body:not(.dark-mode) .amodal-synopsis h3,
+        body:not(.dark-mode) .amodal-section h3 {
+            color: #000000;
+        }
+        .amodal-synopsis p {
+            font-size: 0.82rem;
+            color: #aaaaaa;
+            line-height: 1.6;
+            margin: 0 0 1rem;
+        }
+        body:not(.dark-mode) .amodal-synopsis p {
+            color: #555555;
+        }
+        .amodal-section p {
+            font-size: 0.82rem;
+            color: #aaaaaa;
+            line-height: 1.6;
+            margin: 0 0 1rem;
+        }
+        body:not(.dark-mode) .amodal-section p {
+            color: #555555;
+        }
+        .fav-char {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 0.4rem 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        body:not(.dark-mode) .fav-char {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.08);
+        }
+        .fav-char-img {
+            width: 36px;
+            height: 24px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(255,255,255,0.06);
+            flex-shrink: 0;
+        }
+        body:not(.dark-mode) .fav-char-img {
+            background-color: rgba(0,0,0,0.06);
+        }
+        .fav-char-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .fav-char-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+        body:not(.dark-mode) .fav-char-name {
+            color: #000000;
+        }
+        .fav-char-role {
+            font-size: 0.72rem;
+            color: #777777;
+            line-height: 1.3;
+        }
+        body:not(.dark-mode) .fav-char-role {
+            color: #999999;
+        }
+        body:not(.dark-mode) .amodal-section p {
+            color: #555555;
+        }
+        .amodal-mal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: #4a9eff;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid rgba(74,158,255,0.3);
+            border-radius: 4px;
+            transition: background 0.2s ease;
+            margin-top: 0.25rem;
+        }
+        .amodal-mal-link:hover {
+            background: rgba(74,158,255,0.1);
+        }
+        .amodal-loading {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="dark-mode ui-ready">
+    <script>try{if(localStorage.getItem('darkMode')==='disabled')document.body.classList.remove('dark-mode')}catch(e){}</script>
+    <main class="wrap">
+        <nav class="nav">
+            <a href="/" class="logo">dsplay</a>
+            <div class="navr">
+                <ul class="links">
+                    <li><a href="/" data-i18n="nav_home">home</a></li>
+                    <li><a href="/passion.html" data-i18n="nav_passions">passions</a></li>
+                    <li class="dropc">
+                        <button class="dropb" id="dbtn">☰</button>
+                        <div class="dropm" id="dmenu">
+                            <a href="blogs.html" data-i18n="nav_blogs">blogs</a>
+                            <a href="friends.html" data-i18n="nav_friends">friends</a>
+                            <a href="passion.html" data-i18n="nav_passions">passion</a>
+                            <a href="tastes.html" data-i18n="nav_tastes">tastes</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="acts">
+                    <button class="tbtn" id="tbtn" aria-label="Toggle theme">
+                        <span class="tico material-symbols-outlined">dark_mode</span>
+                    </button>
+                    <button class="lbtn" id="lbtn" aria-label="Switch to Thai">🇹🇭</button>
+                    <button class="mbtn" id="mbtn" aria-label="Open listening modal">
+                        <span class="mic material-symbols-outlined">headphones</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section class="t-hd">
+            <h1 data-i18n="tastes_title">tastes</h1>
+        </section>
+
+        <div class="t-tabs">
+            <button class="t-tab active" data-tab="music">
+                <span class="icon material-symbols-outlined">music_note</span>
+                <span data-i18n="tastes_tab_music">music</span>
+            </button>
+            <button class="t-tab" data-tab="anime">
+                <span class="icon material-symbols-outlined">movie</span>
+                <span data-i18n="tastes_tab_anime">anime</span>
+            </button>
+            <button class="t-tab" data-tab="games">
+                <span class="icon material-symbols-outlined">games</span>
+                <span data-i18n="tastes_tab_games">games</span>
+            </button>
+        </div>
+
+        <div class="t-panel active" data-panel="music">
+            <h2 class="t-sub" data-i18n="tastes_thai_songs">Thai Songs</h2>
+            <div class="song-row">
+                <a class="song-card" href="https://music.youtube.com/search?q=tattoo+colour+cinderella" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://f4.bcbits.com/img/a1811309940_16.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">Cinderella</span>
+                        <span class="song-album">ชุดที่ 8 จงเพราะ</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=tattoo+colour+โกหก" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://f4.bcbits.com/img/a1811309940_16.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">โกหก</span>
+                        <span class="song-album">ชุดที่ 8 จงเพราะ</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=tattoo+colour+รักแรกพบ" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://f4.bcbits.com/img/a1837469402_16.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">รักแรกพบ</span>
+                        <span class="song-album">ตรงแนว ๆ</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=tattoo+colour+ขาหมู" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://f4.bcbits.com/img/a1811309940_16.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">ขาหมู</span>
+                        <span class="song-album">ชุดที่ 8 จงเพราะ</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=tattoo+colour+เปิดเพลงไหน+เปิดเมื่อไหร่+ก็ยังสวยงาม" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://f4.bcbits.com/img/a1811309940_16.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">เปิดเพลงไหน เปิดเมื่อไหร่ ก็ยังสวยงาม</span>
+                        <span class="song-album">ชุดที่ 8 จงเพราะ</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=fellow+fellow+ไม่เปลี่ยนเลย" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6f/be/f9/6fbef931-6eee-0c8d-6d90-f17301061daf/cover.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">ไม่เปลี่ยนเลย</span>
+                        <span class="song-album">ไม่เปลี่ยนเลย (Best Luck) - Single</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=jeff+satur+ghost" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2d/8a/7c/2d8a7c7b-5ebd-6f42-8300-69730a55a2eb/5054197954672.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">Ghost</span>
+                        <span class="song-album">Ghost - Single</span>
+                    </div>
+                </a>
+            </div>
+            <h2 class="t-sub" data-i18n="tastes_eng_songs">English Songs</h2>
+            <div class="song-row">
+                <a class="song-card" href="https://music.youtube.com/search?q=clean+bandit+rather+be" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/79/d0/42/79d04253-47ff-f88e-4990-85a583c70080/825646347636.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">Rather Be</span>
+                        <span class="song-album">New Bandit</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=kendrick+lamar+luther" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/50/c2/cc/50c2cc95-3658-9417-0d4b-831abde44ba1/24UM1IM28978.rgb.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">luther</span>
+                        <span class="song-album">GNX</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=kendrick+lamar+all+the+stars" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/4d/16/55/4d165549-3d11-86dc-fcbf-be7fe0bcadfb/18UMGIM00002.rgb.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">All The Stars</span>
+                        <span class="song-album">Black Panther: The Album</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=john+michael+howell+a+thousand+years" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/39/6a/88/396a883e-46f5-3b98-1eb8-64b464ed5243/artwork.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">A Thousand Years</span>
+                        <span class="song-album">A Thousand Years - Single</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=lukas+graham+7+years" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music69/v4/1f/57/08/1f57082e-ee7e-dcb7-a73e-ba1f3468211d/093624920496.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">7 Years</span>
+                        <span class="song-album">Lukas Graham (Blue Album)</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=maroon+5+maps" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/0d/f0/8b/0df08b64-3743-4ae0-f3cc-1314716d841d/14UMGIM31675.rgb.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">Maps</span>
+                        <span class="song-album">V</span>
+                    </div>
+                </a>
+                <a class="song-card" href="https://music.youtube.com/search?q=glass+animals+heat+waves" target="_blank" rel="noopener">
+                    <div class="song-art" style="background-image:url(https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/da/8b/77/da8b7731-6f4f-eacf-5e74-8b23389eefa1/20UMGIM03371.rgb.jpg/600x600bb.jpg)"></div>
+                    <div class="song-info">
+                        <span class="song-name">Heat Waves</span>
+                        <span class="song-album">Dreamland</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="t-panel" data-panel="anime">
+            <div class="anime-row">
+                <a class="anime-card fav" href="https://myanimelist.net/anime/20785" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/11/61039.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name"><span class="fav-badge">★</span> The Irregular at Magic High School</span>
+                        <span class="anime-tag">TV · 2014–2024</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/58059" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1281/144104.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Wistoria: Wand and Sword</span>
+                        <span class="anime-tag">TV · 2024</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/38101" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1819/97947.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">The Quintessential Quintuplets</span>
+                        <span class="anime-tag">TV · 2019</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/51711" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1049/131580.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">The Iceblade Sorcerer Shall Rule the World</span>
+                        <span class="anime-tag">TV · 2023</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/54744" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1596/152806.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Alya Sometimes Hides Her Feelings in Russian</span>
+                        <span class="anime-tag">TV · 2024</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/42897" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1695/111486.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Horimiya</span>
+                        <span class="anime-tag">TV · 2021</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/50582" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1396/136273.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Reign of the Seven Spellblades</span>
+                        <span class="anime-tag">TV · 2023</span>
+                    </div>
+                </a>
+            </div>
+            <div class="anime-row">
+                <a class="anime-card" href="https://myanimelist.net/anime/14813" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/11/75376.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Oregairu</span>
+                        <span class="anime-tag">TV · 2013–2020</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/44203" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1836/116060.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Spirit Chronicles</span>
+                        <span class="anime-tag">TV · 2021</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/50306" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1087/144583.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Spirit Chronicles S2</span>
+                        <span class="anime-tag">TV · 2024</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/39535" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1530/117776.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Mushoku Tensei: Jobless Reincarnation</span>
+                        <span class="anime-tag">TV · 2021</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/51179" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1898/138005.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Mushoku Tensei: Jobless Reincarnation S2</span>
+                        <span class="anime-tag">TV · 2023</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/56734" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1423/155713.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">I Made Friends with the Second Prettiest Girl in My Class</span>
+                        <span class="anime-tag">TV · 2026</span>
+                    </div>
+                </a>
+            </div>
+            <div class="anime-row">
+                <a class="anime-card" href="https://myanimelist.net/anime/35507" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/5/86830.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Classroom of the Elite</span>
+                        <span class="anime-tag">TV · 2017</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/51096" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1010/124180.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Classroom of the Elite II</span>
+                        <span class="anime-tag">TV · 2022</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/51180" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1332/139318.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Classroom of the Elite III</span>
+                        <span class="anime-tag">TV · 2024</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/59708" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1176/153626.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Classroom of the Elite 4th Season</span>
+                        <span class="anime-tag">TV · 2026</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/31240" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1522/128039.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Re:Zero -Starting Life in Another World-</span>
+                        <span class="anime-tag">TV · 2016</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/269" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1541/147774.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Bleach</span>
+                        <span class="anime-tag">TV · 2004 (<span data-i18n="anime_still_watching">still watching</span>)</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/6213" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1099/106939.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">A Certain Scientific Railgun</span>
+                        <span class="anime-tag">TV · 2009</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/51553" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1726/155542.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Witch Hat Atelier</span>
+                        <span class="anime-tag">TV · 2026</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://myanimelist.net/anime/1535" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://cdn.myanimelist.net/images/anime/1079/138100.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Death Note</span>
+                        <span class="anime-tag">TV · 2006</span>
+                    </div>
+                </a>
+            </div>
+            <p class="anime-footnote" data-i18n="tastes_anime_footnote">i do watch more than this but i don't save them in mal or al</p>
+        </div>
+
+        <div class="t-panel" data-panel="games">
+            <div class="anime-row">
+                <a class="anime-card" href="https://en.wikipedia.org/wiki/Forza_Horizon_6" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://upload.wikimedia.org/wikipedia/en/8/86/Forza_Horizon_5_cover_art.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Forza Horizon 6</span>
+                        <span class="anime-tag">open-world racing</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://en.wikipedia.org/wiki/Minecraft" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://upload.wikimedia.org/wikipedia/en/b/be/Minecraft_game_logo_2023.png)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Minecraft</span>
+                        <span class="anime-tag">sandbox survival</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://en.wikipedia.org/wiki/Roblox" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/cb/Roblox_logo.svg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">Roblox</span>
+                        <span class="anime-tag">platform</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://en.wikipedia.org/wiki/The_Crew_Motorfest" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://upload.wikimedia.org/wikipedia/en/e/ea/The_Crew_Motorfest_cover_art.jpg)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">The Crew Motorfest</span>
+                        <span class="anime-tag">open-world racing</span>
+                    </div>
+                </a>
+                <a class="anime-card" href="https://en.wikipedia.org/wiki/Microsoft_Flight_Simulator_(2020_video_game)" target="_blank" rel="noopener">
+                    <div class="anime-art" style="background-image:url(https://upload.wikimedia.org/wikipedia/en/8/84/Microsoft_Flight_Simulator_2020_cover_art.png)"></div>
+                    <div class="anime-info">
+                        <span class="anime-name">MSFS</span>
+                        <span class="anime-tag">flight sim</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <footer class="ft">
+            <p>&copy; 2026 dsplay</p>
+        </footer>
+    </main>
+
+    <div class="mback" id="mmod" aria-hidden="true">
+        <div class="mmod" role="dialog" aria-modal="true" aria-labelledby="mtit">
+            <div class="mhead">
+                <p class="mtit" id="mtit" data-i18n="mp_title">Now Playing</p>
+                <button class="mclose" id="mclose" aria-label="Close listening modal"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="mbody" id="now" aria-live="polite">
+                <img class="mcover is-empty" id="cov" alt="Album cover" loading="lazy">
+                <div class="cfb" id="cfb" aria-hidden="true">
+                    <span class="material-symbols-outlined">music_note</span>
+                </div>
+                <div class="mmeta">
+                    <p class="ttl" id="ttl">Playing nothing</p>
+                    <p class="art" id="art">No track currently playing</p>
+                    <a class="src" id="src" href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">
+                        <span class="material-symbols-outlined" aria-hidden="true">headphones</span>
+                        <span data-i18n="mp_listen">Listen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="amodal-back" id="amod" aria-hidden="true">
+        <div class="amodal" role="dialog" aria-modal="true">
+            <div class="amodal-head">
+                <h2 class="amodal-title" id="amodal-title" data-i18n="tastes_tab_anime">Anime</h2>
+                <button class="mclose" id="amodal-close" aria-label="Close anime modal"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="amodal-body" id="amodal-body">
+                <div class="amodal-loading" data-i18n="amodal_loading">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="anime-data.js?v=7"></script>
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.t-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.t-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.t-panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelector(`[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.anime-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = card.getAttribute('href');
+                const malId = href.match(/\/anime\/(\d+)/)?.[1];
+                if (!malId) return;
+
+                const modal = document.getElementById('amod');
+                const body = document.getElementById('amodal-body');
+                const title = document.getElementById('amodal-title');
+
+                const lang = localStorage.getItem('lang') || 'en';
+                const t = (k) => translations[lang] && translations[lang][k] !== undefined ? translations[lang][k] : translations['en'][k];
+                const rawTitle = card.querySelector('.anime-name').textContent.replace('\u2605', '').trim();
+                title.textContent = rawTitle;
+                body.innerHTML = '<div class="amodal-loading">' + t('amodal_loading') + '</div>';
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+
+                const anime = ANIME_DATA[malId];
+                if (!anime) {
+                    body.innerHTML = '<div class="amodal-loading">' + t('amodal_no_data') + '</div>';
+                    return;
+                }
+
+                const meta = [];
+                if (anime.type) meta.push(anime.type);
+                if (anime.episodes) meta.push(`${anime.episodes} eps`);
+                if (anime.score) meta.push(`\u2605 ${anime.score}`);
+                if (anime.status) meta.push(anime.status);
+                if (anime.year) meta.push(String(anime.year));
+
+                const synopsis = anime.synopsis
+                    ? anime.synopsis.replace(/\n/g, '<br>')
+                    : t('amodal_no_synopsis');
+
+                body.innerHTML = `
+                    <div class="amodal-hero">
+                        <img src="${anime.image}" alt="${anime.title}" loading="lazy">
+                    </div>
+                    <div class="amodal-content">
+                        <div class="amodal-meta">
+                            ${meta.map(m => `<span>${m}</span>`).join('')}
+                        </div>
+                        <div class="amodal-synopsis">
+                            <h3>${t('amodal_synopsis')}</h3>
+                            <p>${synopsis}</p>
+                        </div>
+                        <div class="amodal-section">
+                            <h3>${t('amodal_fav_char')}</h3>
+                            ${anime.fav_char ? `
+                            <div class="fav-char">
+                                <div class="fav-char-img" style="background-image:url(${anime.fav_char.image})"></div>
+                                <div class="fav-char-info">
+                                    <span class="fav-char-name">${anime.fav_char.name}</span>
+                                    <span class="fav-char-role">${anime.fav_char.role}</span>
+                                </div>
+                            </div>` : `
+                            <div class="fav-char">
+                                <div class="fav-char-img"></div>
+                                <div class="fav-char-info">
+                                    <span class="fav-char-name">${t('amodal_no_opinion')}</span>
+                                    <span class="fav-char-role">${t('amodal_no_opinion')}</span>
+                                </div>
+                            </div>`}
+                        </div>
+                        <div class="amodal-section">
+                            <h3>${t('amodal_fav_arc')}</h3>
+                            <p>${anime.fav_arc || t('amodal_no_opinion')}</p>
+                        </div>
+                        <div class="amodal-section">
+                            <h3>${t('amodal_why_love')}</h3>
+                            <p>${anime.why_i_love || t('amodal_no_opinion')}</p>
+                        </div>
+                        <a class="amodal-mal-link" href="${anime.url}" target="_blank" rel="noopener">
+                            <span class="material-symbols-outlined" style="font-size:1rem;">open_in_new</span>
+                            ${t('amodal_view_mal')}
+                        </a>
+                    </div>
+                `;
+                title.textContent = anime.title;
+            });
+        });
+
+        function closeAnimeModal() {
+            document.getElementById('amod').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('amodal-close').addEventListener('click', closeAnimeModal);
+
+        document.getElementById('amod').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeAnimeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAnimeModal();
+            }
+        });
+    </script>
+</body>
+</html>

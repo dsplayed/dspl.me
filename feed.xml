@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>dsplay's blog</title>
+    <link>https://dsplay.cc</link>
+    <description>stuff i write about tech, security, philosophy, and whatever else crosses my mind.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dsplay.cc/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>The True Love Paradox</title>
+      <link>https://dsplay.cc/blog/the-true-love-paradox/</link>
+      <guid>https://dsplay.cc/blog/the-true-love-paradox/</guid>
+      <description>Love is something that people choose to do. The True Love Paradox asks if a person can really love someone if they do things on purpose to make that person love them back.</description>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
+      <category>philosophy</category>
+      <category>ethics</category>
+      <author>dsplay</author>
+    </item>
+    <item>
+      <title>two months later</title>
+      <link>https://dsplay.cc/blog/two-months-later/</link>
+      <guid>https://dsplay.cc/blog/two-months-later/</guid>
+      <description>i reported vulnerabilities privately. two months later, users still hadn't been informed. this is what happened.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <category>security</category>
+      <author>dsplay</author>
+    </item>
+    <item>
+      <title>how i accessed over 600 records of people anime preferences</title>
+      <link>https://dsplay.cc/blog/how-i-accessed-600-records-of/</link>
+      <guid>https://dsplay.cc/blog/how-i-accessed-600-records-of/</guid>
+      <description>i found a supabase app without rls and accidentally accessed 600+ user records just by being curious</description>
+      <pubDate>Tue, 20 May 2026 00:00:00 +0000</pubDate>
+      <category>security</category>
+      <author>dsplay</author>
+    </item>
+    <item>
+      <title>testing if blog works</title>
+      <link>https://dsplay.cc/blog/blog-test-ez/</link>
+      <guid>https://dsplay.cc/blog/blog-test-ez/</guid>
+      <description>hopefully this works, i'm too lazy to recode all this shit</description>
+      <pubDate>Thu, 24 Apr 2026 00:00:00 +0000</pubDate>
+      <author>dsplay</author>
+    </item>
+  </channel>
+</rss>

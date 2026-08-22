@@ -1,0 +1,13 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.*
+*.log
+*.zip
+.DS_Store
+.wrangler/
+.thumb/
+og/.thumb/
+dist/
+.venv/

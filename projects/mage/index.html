@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mage - dsplay</title>
+    <meta name="description" content="a link-in-bio app with username pages, customization, and r2 uploads. the story and how it works.">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="canonical" href="https://dsplay.cc/projects/mage/">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dsplay.cc/projects/mage/">
+    <meta property="og:title" content="Mage">
+    <meta property="og:description" content="a link-in-bio app for sharing your links, socials, and identity in one place.">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mage">
+    <meta name="twitter:description" content="a link-in-bio app for sharing your links, socials, and identity in one place.">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .pj h1 {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .lnks {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0 0 1.5rem;
+        }
+
+        .lnks a {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.85rem;
+            text-decoration: none !important;
+        }
+
+        body:not(.dark-mode) .lnks a {
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .pj .live {
+            color: #999999;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pj h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .pj p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        body:not(.dark-mode) .pj p {
+            color: #444444;
+        }
+
+        .pj a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .pj a:hover {
+            opacity: 0.7;
+        }
+
+        .pj .hero-shot {
+            width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        body:not(.dark-mode) .pj .hero-shot {
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .pj .cap {
+            color: #888888;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        body:not(.dark-mode) .stat {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .stat b {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stat span {
+            color: #999999;
+            font-size: 0.8rem;
+        }
+
+        .tl {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .tl li {
+            position: relative;
+            padding: 0 0 1.5rem 1.6rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cccccc;
+        }
+
+        body:not(.dark-mode) .tl li {
+            border-left-color: rgba(0, 0, 0, 0.12);
+            color: #444444;
+        }
+
+        .tl li::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #666666;
+        }
+
+        .tl li:last-child {
+            border-left-color: transparent;
+            padding-bottom: 0;
+        }
+
+        .tl b {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        body:not(.dark-mode) .tl b {
+            color: #000000;
+        }
+
+        .term {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin: 1.5rem 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            color: #7ee787;
+            overflow-x: auto;
+        }
+
+        .term .dim {
+            color: #666666;
+        }
+
+        .term .path {
+            color: #79c0ff;
+        }
+
+        .pj-back {
+            display: inline-block;
+            margin-top: 3rem;
+            color: #999999;
+            font-size: 0.9rem;
+            text-decoration: none !important;
+        }
+
+        .pj-back:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="dark-mode ui-ready">
+    <script>try{if(localStorage.getItem('darkMode')==='disabled')document.body.classList.remove('dark-mode')}catch(e){}</script>
+    <main class="wrap">
+        <nav class="nav">
+            <a href="/" class="logo">dsplay</a>
+            <div class="navr">
+                <ul class="links">
+                    <li><a href="/" data-i18n="nav_home">home</a></li>
+                    <li><a href="/passion.html" data-i18n="nav_passions">passions</a></li>
+                    <li class="dropc">
+                        <button class="dropb" id="dbtn">☰</button>
+                        <div class="dropm" id="dmenu">
+                            <a href="blogs.html" data-i18n="nav_blogs">blogs</a>
+                            <a href="friends.html" data-i18n="nav_friends">friends</a>
+                            <a href="passion.html" data-i18n="nav_passions">passion</a>
+                            <a href="tastes.html" data-i18n="nav_tastes">tastes</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="acts">
+                    <button class="tbtn" id="tbtn" aria-label="Toggle theme">
+                        <span class="tico material-symbols-outlined">dark_mode</span>
+                    </button>
+                    <button class="lbtn" id="lbtn" aria-label="Switch to Thai">🇹🇭</button>
+                    <button class="mbtn" id="mbtn" aria-label="Open listening modal">
+                        <span class="mic material-symbols-outlined">headphones</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section class="pj">
+            <h1>Mage</h1>
+            <p class="live">a link-in-bio app · <a href="https://mage.bio" target="_blank" rel="noopener noreferrer">mage.bio</a></p>
+
+            <div class="lnks">
+                <a href="https://mage.bio" target="_blank" rel="noopener noreferrer">site</a>
+            <a href="https://github.com/dsplayed/mage" target="_blank" rel="noopener noreferrer">github</a>
+            </div>
+
+            <h2>what it is</h2>
+            <p>Mage is a link-in-bio app. you get a username page where you put your links, socials, and whatever else, and it's supposed to look like you instead of a generic card grid.</p>
+
+            <div class="stats">
+                <div class="stat"><b>16</b><span>next.js</span></div>
+                <div class="stat"><b>50mb</b><span>upload cap</span></div>
+                <div class="stat"><b>5min</b><span>upload token ttl</span></div>
+                <div class="stat"><b>r2</b><span>file storage</span></div>
+            </div>
+
+            <h2>the story</h2>
+            <ul class="tl">
+                <li><b>i wanted a link-in-bio that didn't look like every other one.</b> most of them are templates with ads. so i built mine.</li>
+                <li><b>next.js and firebase.</b> i wanted auth and a database without running my own server. email signup, a verify-email step, and firestore rules so nobody touches anyone else's profile.</li>
+                <li><b>the dashboard runs everything.</b> links, badges, customization, settings, and a host mode, all behind auth. there's also explore and a leaderboard so profiles can actually be found instead of sitting in the dark.</li>
+                <li><b>uploads were the annoying part.</b> firestore isn't for files, so i made a cloudflare worker that checks a short-lived upload token against firestore, streams the file into r2, and serves it back from the r2 domain. tokens expire after five minutes so they can't be replayed.</li>
+                <li><b>there's a sharex integration</b> so screenshots go straight to your profile. that part is just convenience.</li>
+            </ul>
+
+            <h2>how the upload flow works</h2>
+            <p>the worker does the file work instead of firebase, because storing files in a document database is a bad time:</p>
+            <div class="term">
+                <span class="dim"># app asks worker for an upload token</span><br>
+                POST <span class="path">/upload/token</span>  (firebase token checked)<br><br>
+                <span class="dim"># worker verifies against firestore, mints a token</span><br>
+                200  { token, expiresIn: 300s }<br><br>
+                <span class="dim"># app PUTs the file to the worker with the token</span><br>
+                PUT <span class="path">/upload</span>  Authorization: token  (max 50mb)<br><br>
+                <span class="dim"># worker streams it into r2, returns the url</span><br>
+                200  { url: "https://mage-r2.dsplay.workers.dev/..." }
+            </div>
+
+            <p>the token dies after five minutes, so you can't steal one and use it later. the file lives in r2 and gets served straight from the worker domain, no firebase in the middle.</p>
+
+            <a class="pj-back" href="/#prj">← back to projects</a>
+        </section>
+
+        <p style="text-align: center; margin-top: 3rem; color: #999; font-size: 0.9rem;">&copy; 2026 dsplay</p>
+    </main>
+
+    <div class="mback" id="mmod" aria-hidden="true">
+        <div class="mmod" role="dialog" aria-modal="true" aria-labelledby="mtit">
+            <div class="mhead">
+                <p class="mtit" id="mtit" data-i18n="mp_title">Now Playing</p>
+                <button class="mclose" id="mclose" aria-label="Close listening modal" data-i18n="mp_close">close</button>
+            </div>
+            <div class="mbody" id="now" aria-live="polite">
+                <img class="mcover is-empty" id="cov" alt="Album cover" loading="lazy">
+                <div class="cfb" id="cfb" aria-hidden="true">
+                    <span class="material-symbols-outlined">music_note</span>
+                </div>
+                <div class="mmeta">
+                    <p class="ttl" id="ttl">Playing nothing</p>
+                    <p class="art" id="art">No track currently playing</p>
+                    <a class="src" id="src" href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">
+                        <span class="material-symbols-outlined" aria-hidden="true">headphones</span>
+                        <span data-i18n="mp_listen">Listen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

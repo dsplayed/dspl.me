@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dsplay.cc/sitemap.xml
+Sitemap: https://dsplay.cc/blog-sitemap.xml

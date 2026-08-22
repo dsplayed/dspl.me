@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlyn - dsplay</title>
+    <meta name="description" content="an ai agent with memory, browser control, and sandboxed code execution. the story and how it works.">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="canonical" href="https://dsplay.cc/projects/charlyn/">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dsplay.cc/projects/charlyn/">
+    <meta property="og:title" content="Charlyn">
+    <meta property="og:description" content="an ai agent with memory, browser control, and sandboxed code execution.">
+    <meta property="og:image" content="https://dsplay.cc/assets/charlyn/term.jpg">
+    <meta property="og:image:width" content="900">
+    <meta property="og:image:height" content="2160">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Charlyn">
+    <meta name="twitter:description" content="an ai agent with memory, browser control, and sandboxed code execution.">
+    <meta name="twitter:image" content="https://dsplay.cc/assets/charlyn/term.jpg">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .pj h1 {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .lnks {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0 0 1.5rem;
+        }
+
+        .lnks a {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.85rem;
+            text-decoration: none !important;
+        }
+
+        body:not(.dark-mode) .lnks a {
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .pj .live {
+            color: #999999;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pj h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .pj p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        body:not(.dark-mode) .pj p {
+            color: #444444;
+        }
+
+        .pj a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .pj a:hover {
+            opacity: 0.7;
+        }
+
+        .pj .hero-shot {
+            width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        body:not(.dark-mode) .pj .hero-shot {
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .pj .cap {
+            color: #888888;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        body:not(.dark-mode) .stat {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .stat b {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stat span {
+            color: #999999;
+            font-size: 0.8rem;
+        }
+
+        .tl {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .tl li {
+            position: relative;
+            padding: 0 0 1.5rem 1.6rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cccccc;
+        }
+
+        body:not(.dark-mode) .tl li {
+            border-left-color: rgba(0, 0, 0, 0.12);
+            color: #444444;
+        }
+
+        .tl li::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #666666;
+        }
+
+        .tl li:last-child {
+            border-left-color: transparent;
+            padding-bottom: 0;
+        }
+
+        .tl b {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        body:not(.dark-mode) .tl b {
+            color: #000000;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .chip {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            color: #aaaaaa;
+        }
+
+        body:not(.dark-mode) .chip {
+            border-color: rgba(0, 0, 0, 0.12);
+            color: #555555;
+        }
+
+        .pj-back {
+            display: inline-block;
+            margin-top: 3rem;
+            color: #999999;
+            font-size: 0.9rem;
+            text-decoration: none !important;
+        }
+
+        .pj-back:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="dark-mode ui-ready">
+    <script>try{if(localStorage.getItem('darkMode')==='disabled')document.body.classList.remove('dark-mode')}catch(e){}</script>
+    <main class="wrap">
+        <nav class="nav">
+            <a href="/" class="logo">dsplay</a>
+            <div class="navr">
+                <ul class="links">
+                    <li><a href="/" data-i18n="nav_home">home</a></li>
+                    <li><a href="/passion.html" data-i18n="nav_passions">passions</a></li>
+                    <li class="dropc">
+                        <button class="dropb" id="dbtn">☰</button>
+                        <div class="dropm" id="dmenu">
+                            <a href="blogs.html" data-i18n="nav_blogs">blogs</a>
+                            <a href="friends.html" data-i18n="nav_friends">friends</a>
+                            <a href="passion.html" data-i18n="nav_passions">passion</a>
+                            <a href="tastes.html" data-i18n="nav_tastes">tastes</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="acts">
+                    <button class="tbtn" id="tbtn" aria-label="Toggle theme">
+                        <span class="tico material-symbols-outlined">dark_mode</span>
+                    </button>
+                    <button class="lbtn" id="lbtn" aria-label="Switch to Thai">🇹🇭</button>
+                    <button class="mbtn" id="mbtn" aria-label="Open listening modal">
+                        <span class="mic material-symbols-outlined">headphones</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section class="pj">
+            <h1>Charlyn</h1>
+            <p class="live">an ai agent for the terminal and discord · runs locally, no cloud dependency</p>
+
+            <div class="lnks">
+                <a href="https://github.com/dsplayed/charlyn" target="_blank" rel="noopener noreferrer">github</a>
+            </div>
+
+            <img class="hero-shot" src="/assets/charlyn/term.jpg" alt="Charlyn terminal session showing the tool table">
+            <p class="cap">a real session. the header, the sandbox status, and the tool table.</p>
+
+            <h2>what it is</h2>
+            <p>Charlyn is an ai agent that can do things instead of just talking. browse the web, read screenshots, edit files, run code, remember what you told it, keep a conversation going. it lives in the terminal and on discord. there's also a roblox script in there because i couldn't help myself.</p>
+
+            <div class="stats">
+                <div class="stat"><b>3</b><span>llm backends</span></div>
+                <div class="stat"><b>~20</b><span>tools</span></div>
+                <div class="stat"><b>1</b><span>docker container per user</span></div>
+                <div class="stat"><b>json</b><span>memory, ai decides</span></div>
+            </div>
+
+            <h2>the story</h2>
+            <ul class="tl">
+                <li><b>it started as a cli agent.</b> i wanted an assistant that could do things, so i gave it tools: a browser, a terminal, files. that was the whole first version.</li>
+                <li><b>i didn't want to be locked to one model.</b> so the llm client talks to three backends: ollama, openai-compatible apis, and github copilot. tool calls from each get normalized into the same shape, so the agent logic doesn't care which model is driving it. there's a planner mode for big tasks and history summarization so long conversations don't blow up the context window.</li>
+                <li><b>the toolset grew from there.</b> playwright for browser control, ocr for reading images, web search and scraping, username lookup, dns and whois, wayback, anime and manga lookup. it's a toolbox, not a chat.</li>
+                <li><b>memory is json files.</b> the ai decides what's worth remembering, and per-user files keep people's stuff separate. a limit stops memory from crowding out the actual conversation.</li>
+                <li><b>the scary part is code execution.</b> i wasn't going to let an ai run arbitrary commands on my machine, so each user gets a docker container. read-only root filesystem, cpu and memory limits, and a blocklist for escape commands like docker, nsenter, and chroot. the ai can run code, it just can't leave the box.</li>
+                <li><b>then it moved to discord.</b> because that's where people already talk. embeds, per-user agents, a whitelist, a per-user model and host. the cli still works, they share the same brain.</li>
+            </ul>
+
+            <h2>the tools</h2>
+            <p>this is what the <code>/tools</code> table in the terminal actually shows:</p>
+            <div class="chips">
+                <span class="chip">browser (navigate, click, type, screenshot)</span>
+                <span class="chip">ocr</span>
+                <span class="chip">web search</span>
+                <span class="chip">deep search</span>
+                <span class="chip">username search</span>
+                <span class="chip">dns lookup</span>
+                <span class="chip">whois</span>
+                <span class="chip">ip info</span>
+                <span class="chip">wayback</span>
+                <span class="chip">anime / manga lookup</span>
+                <span class="chip">terminal</span>
+                <span class="chip">python exec</span>
+                <span class="chip">file read / write / delete / search</span>
+            </div>
+
+            <p>the screenshot above is a real session from the machine this page is built on: the box header, the backend it's using, the sandbox coming up ready, and the tool table. the llm backends were both down when i captured it, which the session said out loud instead of pretending. it doesn't hide what it's doing.</p>
+
+            <a class="pj-back" href="/#prj">← back to projects</a>
+        </section>
+
+        <p style="text-align: center; margin-top: 3rem; color: #999; font-size: 0.9rem;">&copy; 2026 dsplay</p>
+    </main>
+
+    <div class="mback" id="mmod" aria-hidden="true">
+        <div class="mmod" role="dialog" aria-modal="true" aria-labelledby="mtit">
+            <div class="mhead">
+                <p class="mtit" id="mtit" data-i18n="mp_title">Now Playing</p>
+                <button class="mclose" id="mclose" aria-label="Close listening modal" data-i18n="mp_close">close</button>
+            </div>
+            <div class="mbody" id="now" aria-live="polite">
+                <img class="mcover is-empty" id="cov" alt="Album cover" loading="lazy">
+                <div class="cfb" id="cfb" aria-hidden="true">
+                    <span class="material-symbols-outlined">music_note</span>
+                </div>
+                <div class="mmeta">
+                    <p class="ttl" id="ttl">Playing nothing</p>
+                    <p class="art" id="art">No track currently playing</p>
+                    <a class="src" id="src" href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">
+                        <span class="material-symbols-outlined" aria-hidden="true">headphones</span>
+                        <span data-i18n="mp_listen">Listen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>not found - dsplay</title>
+    <meta name="description" content="Blog post not found">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .nf-wrap {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nf-shell {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 0 4rem;
+        }
+
+        .nf-card {
+            width: 100%;
+            max-width: 620px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(14px);
+        }
+
+        body:not(.dark-mode) .nf-card {
+            border-color: rgba(0, 0, 0, 0.08);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.015));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .nf-title {
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            line-height: 0.95;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.05em;
+        }
+
+        .nf-copy {
+            color: #cccccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        body:not(.dark-mode) .nf-copy {
+            color: #555555;
+        }
+
+        .nf-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .nf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+        }
+
+        .nf-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        .nf-btn-primary {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body:not(.dark-mode) .nf-btn-primary {
+            background-color: #0f0f0f;
+            color: #ffffff;
+        }
+
+        .nf-btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        body:not(.dark-mode) .nf-btn-secondary {
+            border-color: rgba(0, 0, 0, 0.12);
+            color: #000000;
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        @media (max-width: 640px) {
+            .nf-shell {
+                padding: 4rem 0 2rem;
+            }
+            .nf-card {
+                padding: 2rem;
+                border-radius: 22px;
+            }
+            .nf-actions {
+                flex-direction: column;
+            }
+            .nf-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode theme-initialized">
+    <script>try{if(localStorage.getItem('darkMode')==='disabled')document.body.classList.remove('dark-mode')}catch(e){}</script>
+    <main class="wrap nf-wrap">
+        <section class="nf-shell">
+            <div class="nf-card">
+                <h1 class="nf-title">lost.</h1>
+                <p class="nf-copy">this page does not exist, moved, or was deleted. try going back home or checking the friends page.</p>
+                <div class="nf-actions">
+                    <a href="/" class="nf-btn nf-btn-primary">go home</a>
+                    <a href="/friends.html" class="nf-btn nf-btn-secondary">view friends</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>

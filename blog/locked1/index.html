@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unknown - dsplay</title>
+    <meta name="description" content="a blog post by dsplay. check it out if you're curious.">
+    <meta name="keywords" content="blog, post, article, writing, blogpost, content, text, story, tutorial, guide, how, tech, technology, programming, code, coding, development, software, web, javascript, python, html, css, react, node, learn, study, notes, developer, coder, tutorial, reference, documentation, tips, tricks, hacks, fix, solution, problem, answer, question, help, support, resource, documentation, wiki, knowledge, information">
+    <meta name="theme-color" content="#0f0f0f">
+    <link rel="canonical" href="https://dsplay.cc/blog-post.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dsplay.cc/blog/locked1/" id="ogUrl">
+    <meta name="x-blog-slug" content="locked1">
+    <meta name="description" content="Read this blog post on my website">
+    <meta property="og:title" content="Unknown" id="ogTitle">
+    <meta property="og:description" content="Read this blog post on my website" id="ogDescription">
+    <meta property="og:image" content="https://dsplay.cc/og/locked1.png" id="ogImage">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:author" content="Unknown" id="ogAuthor">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Unknown" id="twitterTitle">
+    <meta name="twitter:description" content="Read this blog post on my website" id="twitterDescription">
+    <meta name="twitter:image" content="https://dsplay.cc/og/locked1.png" id="twitterImage">
+    
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blnk {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        body:not(.dark-mode) .blnk {
+            color: #666666;
+        }
+
+        .blnk:hover {
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .blnk:hover {
+            color: #000000;
+        }
+
+        .knote {
+            margin-bottom: 1rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #cccccc;
+            background-color: rgba(255, 255, 255, 0.04);
+            font-size: 0.9rem;
+        }
+
+        body:not(.dark-mode) .knote {
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #555555;
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .kmod {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .kmc {
+            background-color: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body:not(.dark-mode) .kmc {
+            background-color: #f5f5f5;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .kmh {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kmi {
+            font-size: 1.8rem;
+            color: #cccccc;
+        }
+
+        body:not(.dark-mode) .kmi {
+            color: #666666;
+        }
+
+        .kmt {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        body:not(.dark-mode) .kmt {
+            color: #000000;
+        }
+
+        .kmd {
+            color: #999999;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        body:not(.dark-mode) .kmd {
+            color: #666666;
+        }
+
+        .kmin {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease;
+        }
+
+        body:not(.dark-mode) .kmin {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #000000;
+        }
+
+        .kmin:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body:not(.dark-mode) .kmin:focus {
+            border-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .kmbtns {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .kmbtn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .kmbtn-s {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .kmbtn-s {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+
+        .kmbtn-s:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        body:not(.dark-mode) .kmbtn-s:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .kmbtn-c {
+            background-color: transparent;
+            color: #999999;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body:not(.dark-mode) .kmbtn-c {
+            color: #666666;
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .kmbtn-c:hover {
+            color: #cccccc;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        body:not(.dark-mode) .kmbtn-c:hover {
+            color: #333333;
+            border-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .kemod {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .kemc {
+            background-color: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body:not(.dark-mode) .kemc {
+            background-color: #f5f5f5;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .ket {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+        }
+
+        body:not(.dark-mode) .ket {
+            color: #000000;
+        }
+
+        .ketxt {
+            color: #cccccc;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        body:not(.dark-mode) .ketxt {
+            color: #555555;
+        }
+
+        .kea {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .bph {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body:not(.dark-mode) .bph {
+            border-bottom-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .bpt {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .bpt {
+            color: #000000;
+        }
+
+        .bpmeta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        body:not(.dark-mode) .bpmeta {
+            color: #666666;
+        }
+
+        .bpmeta span:last-child {
+            color: #999999;
+        }
+
+        body:not(.dark-mode) .bpmeta span:last-child {
+            color: #888888;
+        }
+
+        .bpth {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .bpc {
+            line-height: 2;
+        }
+
+        .bpc h1, .bpc h2, .bpc h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        body:not(.dark-mode) .bpc h1,
+        body:not(.dark-mode) .bpc h2,
+        body:not(.dark-mode) .bpc h3 {
+            color: #000000;
+        }
+
+        .bpc h1 { font-size: 2rem; }
+        .bpc h2 { font-size: 1.6rem; }
+        .bpc h3 { font-size: 1.3rem; }
+
+        .bpc p {
+            margin-bottom: 1.5rem;
+            color: #cccccc;
+        }
+
+        body:not(.dark-mode) .bpc p {
+            color: #333333;
+        }
+
+        .bpc code-block {
+            display: block;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        body:not(.dark-mode) .bpc code-block {
+            background-color: #f5f5f5;
+        }
+
+        .bpc code-block code,
+        .bpc code-block code.hljs {
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre;
+            background: none !important;
+        }
+
+        body:not(.dark-mode) .bpc code-block code {
+            color: #000000;
+        }
+
+        .bpc .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .bpc .code-label-text {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.75rem;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+            color: #aaaaaa;
+        }
+
+        .bpc .code-copy {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #aaaaaa;
+            font-size: 0.9rem;
+            padding: 0.15rem 0.4rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .bpc .code-copy:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        body:not(.dark-mode) .bpc .code-header {
+            border-bottom-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body:not(.dark-mode) .bpc .code-label-text {
+            color: #666666;
+        }
+
+        body:not(.dark-mode) .bpc .code-copy {
+            border-color: rgba(0, 0, 0, 0.15);
+            color: #666666;
+        }
+
+        body:not(.dark-mode) .bpc .code-copy:hover {
+            color: #000000;
+            border-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .bpc blockquote {
+            border-left: 4px solid #cccccc;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #999999;
+        }
+
+        body:not(.dark-mode) .bpc blockquote {
+            border-left-color: #666666;
+            color: #555555;
+        }
+
+        .bpc blockquote .author {
+            font-style: normal;
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        body:not(.dark-mode) .bpc blockquote .author {
+            color: #666666;
+        }
+
+        .bpc img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .bpc .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #999999;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        body:not(.dark-mode) .bpc .image-caption {
+            color: #666666;
+        }
+
+        .bpc iframe {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .bpc audio {
+            width: 100%;
+            margin: 1.5rem 0;
+        }
+
+        .bpc ul, .bpc ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .bpc li {
+            margin-bottom: 0.5rem;
+            color: #cccccc;
+        }
+
+        body:not(.dark-mode) .bpc li {
+            color: #333333;
+        }
+
+        .bpc hr {
+            border: none;
+            border-top: 1px solid #333333;
+            margin: 2rem 0;
+        }
+
+        body:not(.dark-mode) .bpc hr {
+            border-top-color: #e0e0e0;
+        }
+
+        .bptgs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body:not(.dark-mode) .bptgs {
+            border-top-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .bptag {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        body:not(.dark-mode) .bptag {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+
+        .bptag:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .ld {
+            text-align: center;
+            color: #cccccc;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="dark-mode theme-initialized">
+    <script>try{if(localStorage.getItem('darkMode')==='disabled')document.body.classList.remove('dark-mode')}catch(e){}</script>
+    <div id="kmod" class="kmod">
+        <div class="kmc">
+            <div class="kmh">
+                <i class="fas fa-lock kmi"></i>
+                <h2 class="kmt">Locked Post</h2>
+            </div>
+            <p class="kmd">This post requires a key to unlock. Enter it below to view the content.</p>
+            <input type="password" id="kinput" class="kmin" placeholder="Enter key...">
+            <div class="kmbtns">
+                <button id="kcancel" class="kmbtn kmbtn-c">Cancel</button>
+                <button id="ksubmit" class="kmbtn kmbtn-s">Unlock</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="kemod" class="kemod">
+        <div class="kemc">
+            <h2 class="ket">Wrong Key</h2>
+            <p id="ketxt" class="ketxt">That key is incorrect. Please try again.</p>
+            <div class="kea">
+                <button id="keok" class="kmbtn kmbtn-s">Try again</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="wrap">
+        <nav class="nav">
+            <a href="/" class="logo">dsplay</a>
+            <div class="navr">
+                <ul class="links">
+                    <li><a href="/">home</a></li>
+                    <li><a href="/passion.html">passions</a></li>
+                    <li class="dropc">
+                        <button class="dropb" id="dbtn">☰</button>
+                        <div class="dropm" id="dmenu">
+                            <a href="/blogs.html">blogs</a>
+                            <a href="/friends.html">friends</a>
+                            <a href="passion.html">passion</a>
+                            <a href="tastes.html">tastes</a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="tbtn" id="tbtn">
+                    <span class="tico material-symbols-outlined">light_mode</span>
+                </button>
+            </div>
+        </nav>
+
+        <article id="blogPost" class="bpcnt">
+            <div class="ld">Loading post...</div>
+        </article>
+
+        <footer class="footer">
+            <p>&copy; 2026 dsplay</p>
+        </footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/blogs-data.js"></script>
+    <script src="/blog.js?v=2"></script>
+</body>
+</html>
